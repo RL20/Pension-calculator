@@ -5,10 +5,8 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-// let moneyAccumulate = 1000000;
-
 const calculatePension = async () => {
-  let salary = 10000;
+  let salary = parseFloat(await askQuestion("Enter salary : "));
   let moneyAccumulate, depositFeePercentage, cumulativeFee, InsuranceCost, years, annualInterest;
   let hasMaxFee = false;
   let maxFeeAmount = 0;
@@ -29,10 +27,6 @@ const calculatePension = async () => {
   years = parseInt(await askQuestion("Enter number of years: "));
   annualInterest = parseFloat(await askQuestion("Enter annual interest rate: "));
 
-  // const depositFee =
-  //   PensionMonthlyDeposit * (depositFeePercentage / 100) > 35
-  //     ? 35
-  //     : PensionMonthlyDeposit * (depositFeePercentage / 100);
   const depositFee = hasMaxFee
     ? Math.min(maxFeeAmount, PensionMonthlyDeposit * (depositFeePercentage / 100))
     : PensionMonthlyDeposit * (depositFeePercentage / 100);
